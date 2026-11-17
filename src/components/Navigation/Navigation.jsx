@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import {useWatchlist} from "../../context/WatchlistContext.jsx";
+import {useWatchlist} from "../../context/useWatchlist.js";
 import css from "./Navigation.module.css";
 export default function Navigation(){
  const {movies}=useWatchlist();

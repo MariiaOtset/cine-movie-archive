@@ -1,5 +1,5 @@
 import {Link,useLocation} from "react-router-dom";
-import {useWatchlist} from "../../context/WatchlistContext.jsx";
+import {useWatchlist} from "../../context/useWatchlist.js";
 import MovieList from "../../components/MovieList/MovieList.jsx";
 import css from "./WatchlistPage.module.css";
 export default function WatchlistPage(){

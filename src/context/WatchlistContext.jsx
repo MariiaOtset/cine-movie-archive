@@ -1,5 +1,5 @@
-import {createContext,useCallback,useContext,useEffect,useMemo,useState} from "react";
-const WatchlistContext=createContext(null);
+import {useCallback,useEffect,useMemo,useState} from "react";
+import {WatchlistContext} from "./watchlist-store.js";
 const STORAGE="cine-archive-watchlist-v1";
 function readStored(){try{const data=JSON.parse(localStorage.getItem(STORAGE)||"[]");return Array.isArray(data)?data.filter(item=>item&&item.id):[];}catch{return [];}}
 export function WatchlistProvider({children}){
@@ -11,4 +11,3 @@ export function WatchlistProvider({children}){
  const value=useMemo(()=>({movies,toggle,contains}),[movies,toggle,contains]);
  return <WatchlistContext.Provider value={value}>{children}</WatchlistContext.Provider>;
 }
-export function useWatchlist(){const ctx=useContext(WatchlistContext);if(!ctx)throw new Error("WatchlistProvider missing");return ctx;}

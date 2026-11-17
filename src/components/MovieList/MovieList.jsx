@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {useWatchlist} from "../../context/WatchlistContext.jsx";
+import {useWatchlist} from "../../context/useWatchlist.js";
 import {movieImage} from "../../api/movies-api.js";
 import css from "./MovieList.module.css";
 function MovieCard({movie,state}){
