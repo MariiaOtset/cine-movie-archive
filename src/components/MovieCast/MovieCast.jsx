@@ -1,59 +1,12 @@
-import { fetchMovieCast } from "../../api/movies-api";
-import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import BackLink from "../BackLink/BackLink";
+import {useEffect,useState} from "react";
+import {useParams} from "react-router-dom";
+import {fetchMovieCast,movieImage} from "../../api/movies-api.js";
 import css from "./MovieCast.module.css";
-
-function MovieCast() {
-  const { movieId } = useParams();
-  const [cast, setCast] = useState([]);
-  const location = useLocation();
-  const defaultImg =
-    "https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg";
-
-  useEffect(() => {
-    async function fetchCast() {
-      try {
-        const data = await fetchMovieCast(movieId);
-        setCast(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchCast();
-  }, [movieId]);
-
-  return (
-    <div className={css.container}>
-      <BackLink to={location.state?.from ?? `/movies/${movieId}`}>
-        Go back
-      </BackLink>
-      <h2>Movie Cast</h2>
-      {cast.length === 0 ? (
-        <p>No cast information available</p>
-      ) : (
-        <ul className={css.castList}>
-          {cast.map((actor) => (
-            <li key={actor.id} className={css.castItem}>
-              <img
-                src={
-                  actor.profile_path
-                    ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-                    : defaultImg
-                }
-                alt={actor.name}
-                className={css.castImage}
-              />
-              <div className={css.castInfo}>
-                <h3>{actor.name}</h3>
-                <p>Character: {actor.character}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+export default function MovieCast(){
+ const {movieId}=useParams();const [cast,setCast]=useState([]),[loading,setLoading]=useState(true),[error,setError]=useState(false);
+ useEffect(()=>{let active=true;setLoading(true);setError(false);fetchMovieCast(movieId).then(data=>{if(active)setCast(data||[]);}).catch(()=>{if(active)setError(true);}).finally(()=>{if(active)setLoading(false);});return()=>{active=false;};},[movieId]);
+ if(loading)return <p className={css.status}>Loading cast...</p>;
+ if(error)return <p className={css.status}>Cast details are temporarily unavailable.</p>;
+ if(!cast.length)return <p className={css.status}>No cast information available for this film.</p>;
+ return <section><h3 className={css.heading}>Full cast & characters</h3><ul className={css.grid}>{cast.slice(0,30).map(actor=><li key={actor.credit_id||actor.id}><div className={css.image}>{actor.profile_path?<img src={movieImage(actor.profile_path,"w185")} loading="lazy" alt={actor.name}/>:<span aria-hidden="true">✳</span>}</div><div><strong>{actor.name}</strong><span>{actor.character||"Cast member"}</span></div></li>)}</ul></section>;
 }
-
-export default MovieCast;

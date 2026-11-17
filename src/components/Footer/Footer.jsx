@@ -1,0 +1,3 @@
+import {Link} from "react-router-dom";
+import css from "./Footer.module.css";
+export default function Footer(){return <footer className={css.footer}><div><Link to="/" className={css.brand}>CINÉ <span>/ ARCHIVE</span></Link><p>For the films that stay with you.<br/>A curated place to discover your next great watch.</p></div><div className={css.nav}><Link to="/">Discover</Link><Link to="/movies">Explore films</Link><Link to="/watchlist">My watchlist</Link></div><div className={css.bottom}><span>© {new Date().getFullYear()} CINÉ / ARCHIVE · Portfolio demonstration</span><span>Movie data & images provided by <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">TMDB</a>. Not endorsed or certified by TMDB.</span></div></footer>}
