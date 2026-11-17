@@ -5,6 +5,7 @@ import MovieSkeleton from "../../components/MovieSkeleton/MovieSkeleton.jsx";
 import MovieNightPicker from "../../components/MovieNightPicker/MovieNightPicker.jsx";
 import {fetchTrendingMovies,fetchMovieSection,movieImage} from "../../api/movies-api.js";
 import css from "./HomePage.module.css";
+import {formatMovieRating} from "../../utils/movieRating.js";
 const moods=[
  {label:"Feel everything",subtitle:"DRAMA / 01",genre:"18",color:"brown"},
  {label:"The unexpected",subtitle:"THRILLER / 02",genre:"53",color:"blue"},
@@ -27,7 +28,7 @@ export default function HomePage(){
    <div className={css.heroContent}><p className="cine-eyebrow">AN EDITORIAL GUIDE TO THE MOVING IMAGE <span>✳</span> VOL. 01</p>
     <h1 className="cine-serif">Where great<br/>stories <em>stay with you.</em></h1>
     <p className={css.intro}>Discover the films that move you. From modern classics to tomorrow&apos;s favourites — your next cinematic obsession begins here.</p>
-    {hero&&<div className={css.heroFilm}><span>NOW IN THE SPOTLIGHT</span><strong>{hero.title}</strong><span>★ {Number(hero.vote_average||0).toFixed(1)} &nbsp;·&nbsp; {hero.release_date?.slice(0,4)}</span></div>}
+    {hero&&<div className={css.heroFilm}><span>NOW IN THE SPOTLIGHT</span><strong>{hero.title}</strong><span>{formatMovieRating(hero)} &nbsp;·&nbsp; {hero.release_date?.slice(0,4)||"Release TBD"}</span></div>}
     <div className={css.heroActions}><Link className="cine-button" to={hero?"/movies/"+hero.id:"/movies"} state={{from:location}}> {hero?"Explore featured film":"Explore all films"} <span aria-hidden="true">↗</span></Link><Link className={css.secondary} to="/movies">Browse the collection <span aria-hidden="true">→</span></Link></div>
    </div><div className={css.heroBottom}><span>CURATED FOR CURIOUS MINDS</span><span>SCROLL TO DISCOVER &nbsp; ↓</span></div>
   </section>
