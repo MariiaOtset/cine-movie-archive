@@ -31,3 +31,12 @@ This product uses the TMDB API but is not endorsed or certified by TMDB.
 Portfolio modernization on `feat/portfolio-redesign-v1`. Do not merge until browser and mobile QA are complete. The production deployment on `main` may still show the original design.
 
 Created by [Mariia Otset](https://github.com/MariiaOtset).
+
+## V2 — movie-night discovery and watched tracking
+
+- An interactive Movie Night Picker offers a surprise title from the currently loaded TMDB collections, narrowed by a film mood/genre when a match exists.
+- Watchlist supports **To watch / Watched** tabs, title and rating sorting, and persistent watched-state tracking in localStorage.
+- A watchlist dashboard shows saved, watched and unwatched counts, plus a surprise pick from unwatched films.
+- Removing a film from the watchlist also clears its watched status; neither favourites nor watched state requires an account.
+
+The movie-night picker is based on the current editorial pool, **not** the entire TMDB catalog. It may show no match for a particular mood.

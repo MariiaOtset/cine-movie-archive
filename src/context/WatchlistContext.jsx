@@ -8,7 +8,7 @@ export function WatchlistProvider({children}){
  useEffect(()=>{try{localStorage.setItem(STORAGE,JSON.stringify(movies));}catch{/* Storage unavailable */}},[movies]);
  useEffect(()=>{try{localStorage.setItem(WATCHED,JSON.stringify(watched));}catch{/* Storage unavailable */}},[watched]);
  useEffect(()=>{const sync=e=>{if(e.key===STORAGE)setMovies(readMovies());if(e.key===WATCHED)setWatched(readWatched());};window.addEventListener("storage",sync);return()=>window.removeEventListener("storage",sync);},[]);
- const toggle=useCallback(movie=>setMovies(prev=>prev.some(m=>m.id===movie.id)?prev.filter(m=>m.id!==movie.id):[...prev,{id:movie.id,title:movie.title,poster_path:movie.poster_path,backdrop_path:movie.backdrop_path,release_date:movie.release_date,vote_average:movie.vote_average,genre_ids:movie.genre_ids||[]}]),[]);
+ const toggle=useCallback(movie=>{if(movies.some(m=>m.id===movie.id))setWatched(prev=>prev.filter(id=>id!==movie.id));setMovies(prev=>prev.some(m=>m.id===movie.id)?prev.filter(m=>m.id!==movie.id):[...prev,{id:movie.id,title:movie.title,poster_path:movie.poster_path,backdrop_path:movie.backdrop_path,release_date:movie.release_date,vote_average:movie.vote_average,genre_ids:movie.genre_ids||[]}]);},[movies]);
  const contains=useCallback(id=>movies.some(m=>m.id===id),[movies]);
  const markWatched=useCallback(id=>setWatched(prev=>prev.includes(id)?prev.filter(key=>key!==id):[...prev,id]),[]);
  const isWatched=useCallback(id=>watched.includes(id),[watched]);
