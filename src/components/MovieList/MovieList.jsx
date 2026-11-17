@@ -2,14 +2,15 @@ import {Link} from "react-router-dom";
 import {useWatchlist} from "../../context/useWatchlist.js";
 import {movieImage} from "../../api/movies-api.js";
 import css from "./MovieList.module.css";
+import {formatMovieRating,hasMovieRating} from "../../utils/movieRating.js";
 function MovieCard({movie,state,showWatched}){
  const {toggle,contains,isWatched,markWatched}=useWatchlist();
  const year=movie.release_date?.slice(0,4)||"—";
- const rating=Number(movie.vote_average||0).toFixed(1);
+ const rating=formatMovieRating(movie,{compact:true});
  return <li className={css.movieItem}>
   <Link to={"/movies/"+movie.id} state={{...state,movie}} className={css.movieLink} aria-label={"View "+movie.title}>
    <div className={css.poster}>{movie.poster_path?<img src={movieImage(movie.poster_path)} alt={movie.title+" poster"} loading="lazy"/>:<div className={css.noPoster}>CINÉ / ARCHIVE <span>No poster available</span></div>}
-    <span className={css.rating}>★ {rating}</span><span className={css.view}>VIEW FILM <span aria-hidden="true">↗</span></span>
+    <span className={css.rating+(hasMovieRating(movie)?"": " "+css.unrated)}>{rating}</span><span className={css.view}>VIEW FILM <span aria-hidden="true">↗</span></span>
    </div>
    <div className={css.info}><h3>{movie.title}</h3><p>{year} <span>·</span> Film</p></div>
   </Link>

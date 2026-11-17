@@ -4,3 +4,5 @@
 @media(hover:none){.view{display:none}}
 
 .watched{display:inline-flex;align-items:center;justify-content:center;gap:5px;background:#202a37;border:1px solid #475060;border-radius:9px;padding:9px 12px;margin-top:11px;color:#b5c4d0;font-size:11px;font-weight:800;width:100%;transition:background .2s}.watched:hover{background:#333d4b}.isWatched{background:#22483d;color:#bfe2cc;border-color:#3b6958}.isWatched:hover{background:#285748}
+
+.unrated{color:#c5cad2;border-color:#ffffff24;background:#171c25dc;letter-spacing:0;font-size:10px}
