@@ -7,3 +7,18 @@
 .endcap{text-align:center;background:radial-gradient(ellipse at 50% 50%,#343544,#151923 70%);padding:100px 0 110px}.endcap h2{font-size:clamp(48px,6vw,90px);line-height:1.08;margin:20px 0}.endcap>div>p:not(.cine-eyebrow){font-size:15px;color:#b4bac3;line-height:1.7;margin-bottom:28px}.endcap .cine-button{margin:auto}
 @media(max-width:980px){.moodGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:720px}.hero h1{font-size:clamp(67px,10vw,110px)}}
 @media(max-width:650px){.hero{min-height:650px}.heroContent,.heroBottom,.content{width:calc(100% - 36px)}.heroContent{padding:70px 0 40px}.hero h1{font-size:clamp(56px,12.4vw,82px)}.intro{font-size:15px}.heroBottom{font-size:9px}.heroBottom span:first-child{display:none}.firstSection{padding:75px 0 40px}.sectionLead{display:block}.sectionLead h2{font-size:46px}.filmSection{padding:32px 0 40px}.sectionHeader{align-items:flex-start;flex-direction:column;gap:16px}.sectionHeader h2{font-size:41px}.moods{padding:24px 16px;margin:8px 0 40px}.moodGrid{gap:9px}.mood{min-height:184px;padding:15px}.mood h3{font-size:29px}.endcap{padding:80px 0}}
+
+/* Less vertical editorial chrome; headings take full available width. */
+@media(min-width:1180px){
+ .hero h1{max-width:none;font-size:clamp(51px,5.15vw,73px);line-height:1.07;white-space:nowrap}
+ .heroContent{padding:78px 0 44px}
+ .intro{max-width:900px;font-size:15px;line-height:1.65}
+ .firstSection{padding:62px 0 32px}
+ .sectionLead{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.35fr);gap:13px 26px}
+ .sectionLead>.cine-eyebrow{grid-column:1/-1}
+ .sectionLead h2{font-size:clamp(36px,3.25vw,49px);margin:0;white-space:nowrap}
+ .sectionLead>p{grid-column:2;align-self:center;font-size:13px}
+ .sectionHeader h2{font-size:clamp(36px,3.9vw,57px)}
+}
+@media(max-width:1179px){.hero h1{max-width:100%;white-space:normal;text-wrap:pretty;font-size:clamp(56px,7vw,90px)}}
+@media(max-width:650px){.hero h1{font-size:clamp(47px,11vw,73px)}.sectionLead h2{font-size:clamp(38px,8vw,49px)}}
