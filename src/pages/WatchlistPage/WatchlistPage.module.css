@@ -9,3 +9,22 @@
 @media(min-width:1100px){.heading h1,.heading>p:last-child{white-space:nowrap}}
 @media(max-width:1099px){.heading h1,.heading>p:last-child{white-space:normal}}
 @media(max-width:650px){.heading h1{font-size:clamp(39px,9vw,54px)}}
+
+
+/* Three statistics and recommendation cards should wrap rather than overflow. */
+.page,.dashboard,.suggestion,.suggestCard,.controls,.tabs{min-width:0;max-width:100%}
+.suggestion>div,.suggestCard>div{min-width:0}
+.heading h1,.heading>p:last-child,.suggestion h2{white-space:normal;overflow-wrap:anywhere}
+@media(max-width:650px){
+ .dashboard{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .dashboard>div:last-child{grid-column:1/-1}
+ .dashboard>div{min-width:0}
+ .dashboard span{letter-spacing:.07em;overflow-wrap:anywhere}
+ .suggestion{grid-template-columns:minmax(0,1fr)}
+ .suggestCard{min-width:0;gap:10px}
+ .suggestCard img,.posterFallback{width:min(29%,90px);height:auto;aspect-ratio:2/3}
+ .tabs{width:100%}
+ .controls label{max-width:100%;flex-wrap:wrap}
+ .controls select{min-width:0;max-width:100%}
+}
+@media(max-width:360px){.dashboard{grid-template-columns:1fr}.dashboard>div:last-child{grid-column:1}}
