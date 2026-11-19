@@ -7,3 +7,25 @@
 .contentTop{max-width:none}
 .contentTop h2{font-size:clamp(40px,4.5vw,62px)}
 @media(max-width:650px){.copy h1{font-size:clamp(40px,9vw,59px)}}
+
+
+/* Anchor destination remains visible below the sticky navigation. */
+.tabs{scroll-margin-top:105px}
+.heroContent,.copy,.body,.castPreview,.actors,.editorial{min-width:0;max-width:100%}
+@media(max-width:760px){
+ .heroContent{grid-template-columns:minmax(0,1fr)}
+ .copy h1{font-size:clamp(35px,9vw,59px)}
+ .castPreview{padding:17px}
+ .actors{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+ .actor strong,.actor span{overflow-wrap:anywhere}
+ .tabs{gap:0;justify-content:space-between;scroll-margin-top:78px}
+ .tabs a{font-size:12px;padding:0 8px 14px}
+ .contentTop h2{font-size:clamp(34px,8vw,49px)}
+}
+@media(max-width:390px){
+ .actors{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .poster{width:min(60%,190px)}
+ .sectionHead h3{font-size:clamp(31px,9vw,42px)}
+ .metadata{gap:7px;font-size:11px}
+ .genres span{font-size:10px}
+}
